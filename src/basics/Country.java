@@ -1,7 +1,8 @@
 package basics;
 
 public class Country {
-    String name, continent;
+    String name;
+    public String continent;
     long population;
     double avgAge;
 
