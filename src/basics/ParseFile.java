@@ -3,10 +3,9 @@ package basics;
 import fileworks.DataExport;
 import fileworks.DataImport;
 
-import java.io.IOException;
 
 public class ParseFile {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         String path = "data/countries.txt";
         DataImport di = new DataImport(path);
 
@@ -61,13 +60,34 @@ public class ParseFile {
         // Vypsat všechny řádky jako objekty (třídy Country)
         // 1. přečíst soubor
         //  1.1 přečíst řádek
-        //  1.2 do souboru output vypsat pouze země Evropy
         // 2. Do konzole vypsat:
         // zeme s nejvetsim avgAge
         // zeme s nejmensi populaci
 
         while (di.hasNext()) {
-            String line = di.readLine(); // načíst řádek
+            String line = di.readLine();
+            String[] tokens = line.split(";");
+
+            String name = tokens[0];
+            String continent = tokens[1];
+            long population = Long.parseLong(tokens[2]);
+            double averageAge = Double.parseDouble(tokens[3]);
+
+            if(bestAge.avgAge < averageAge) {
+                bestAge.name = name;
+                bestAge.continent = continent;
+                bestAge.population = population;
+                bestAge.avgAge = averageAge;
+            }
+
+            if(worstPopulation.population > population){
+                worstPopulation.name = name;
+                worstPopulation.continent = continent;
+                worstPopulation.population = population;
+                worstPopulation.avgAge = averageAge;
+            }
+
+           /* String line = di.readLine(); // načíst řádek
             String[] tokens = line.split(";"); // rozsekat řádek
 
             // parsing
@@ -95,7 +115,7 @@ public class ParseFile {
                 worstPopulation = oneCountry;
             }
 
-            System.out.println(oneCountry);
+            System.out.println(oneCountry);*/
         }
 
         //export
