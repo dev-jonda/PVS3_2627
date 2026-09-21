@@ -1,5 +1,9 @@
 package oop;
 
+import fileworks.DataImport;
+
+import java.util.ArrayList;
+
 public class Track {
     String name;
     int year;
@@ -57,4 +61,26 @@ public class Track {
     public int getDuration() {
         return duration;
     }
+
+
+    public static void main(String[] args) {
+        DataImport di = new DataImport("data/tracks.txt");
+        ArrayList<Track> tracks = new ArrayList<>();
+        while (di.hasNext()){
+            String line = di.readLine();
+            String[] parts = line.split(";");
+            Track song = new Track(parts[0],
+                    Integer.parseInt(parts[1]),
+                    Double.parseDouble(parts[2]),
+                    Integer.parseInt(parts[3]));
+
+            tracks.add(song);
+        }
+
+        //arraylist zaklady:
+        System.out.println(tracks.get(0));
+        System.out.println(tracks.get(tracks.size()-1));
+        di.finishImport();
+    }
+
 }
