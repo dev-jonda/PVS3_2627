@@ -66,15 +66,16 @@ public class FirstMovieExampleSolution {
         DataImport di = new DataImport("src/jondis/tests/data/movieList.txt");
         DataExport de = new DataExport("horrors.txt");
 
-        // 1. vypsat nejslepší film dle hodnocení
-        // 2. spočítat filmy po roce 2000
-        // 3. vyfiltrovat horrory
+
+
+
 
         Movie bestFilm = new Movie(null, 0, null, Double.MIN_VALUE /* 0.0 nebo Double.MIN_NORMAL nebo Double.MIN_VALUE */);
         ArrayList<Movie> movies = new ArrayList<>();
         int numberOfHorrors = 0;
         int postMilenium = 0;
 
+        // 1. vypsat nejslepší film dle hodnocení
         while (di.hasNext()){
             String line = di.readLine();
             String[] data = line.split(";");
@@ -90,13 +91,13 @@ public class FirstMovieExampleSolution {
                 bestFilm = movie;
             }
 
-
+            // 3. vyfiltrovat horrory
             if (movie.genre.equalsIgnoreCase("horror")) {
                 numberOfHorrors++;
                 de.writeLine(movie.toString());
             }
 
-
+            // 2. spočítat filmy po roce 2000
             if (movie.year >= 2000) {
                 postMilenium++;
             }
@@ -105,10 +106,17 @@ public class FirstMovieExampleSolution {
         }
 
         int post2015 = 0;
+        for (Movie m : movies){
+            System.out.println(m);
+            if(m.year == 2015) post2015++;
+        }
 
         System.out.println("The best movie of all time is: " + bestFilm);
         System.out.println("Number of films postmilenium: " + postMilenium);
         System.out.println("Number of horrors: " + numberOfHorrors);
         System.out.println("Total: " + movies.size());
+
+        di.finishImport();
+        de.finishExport();
     }
 }
