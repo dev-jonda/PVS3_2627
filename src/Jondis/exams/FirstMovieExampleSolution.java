@@ -1,4 +1,4 @@
-package jondis.tests;
+package jondis.exams;
 
 import fileworks.DataExport;
 import fileworks.DataImport;
@@ -50,6 +50,11 @@ class Movie{
         this.rating = rating;
     }
 
+    /**
+     * Komentář k metodě - popis co dělá
+     * @return - popis co vrací
+     */
+
     @Override
     public String toString() {
         return "Movie{" +
@@ -63,7 +68,7 @@ class Movie{
 
 public class FirstMovieExampleSolution {
     public static void main(String[] args) {
-        DataImport di = new DataImport("src/jondis/tests/data/movieList.txt");
+        DataImport di = new DataImport("src/jondis/exams/data/movieList.txt");
         DataExport de = new DataExport("horrors.txt");
 
 

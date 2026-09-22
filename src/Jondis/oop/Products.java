@@ -6,17 +6,20 @@ import fileworks.DataImport;
 import java.util.ArrayList;
 
 class Product{
+    // Atributy
     private String name;
     private String category;
     private int amount;
     private int pricePerPiece;
+
+    private final /*final znamená, že se hodnota atributu nemůže změnit*/ String DEFAULT_CATEGORY = "Other";
 
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name; // this. ukazuje na atribut třídy -> slouží k tomu, aby se nespletl atribut se vstupním atributem
     }
 
     public String getCategory() {
@@ -57,7 +60,7 @@ class Product{
     }
 
     public Product(String name, String category, int amount) {
-        this(name, category);
+//        this(name, DEFAULT_CATEGORY, amount, pricePerPiece);
         this.amount = amount;
     }
 
@@ -81,6 +84,7 @@ public class Products {
     public static void main(String[] args) {
         DataImport di = new DataImport("data/products.txt");
         // načíst celý soubor a vypsat počet kusů na skladu
+        Product product = new Product("Chair", "Furniture", 400);
 
 
         ArrayList<Product> products = new ArrayList<>();
@@ -88,11 +92,11 @@ public class Products {
             String line = di.readLine();
             String[] data = line.split(";");
 
-            Product product = new Product(
-                    data[0],
-                    data[1],
-                    Integer.parseInt(data[2]),
-                    Integer.parseInt(data[3]));
+//            Product product = new Product(
+//                    data[0],
+//                    data[1],
+//                    Integer.parseInt(data[2]),
+//                    Integer.parseInt(data[3]));
         }
 
 
