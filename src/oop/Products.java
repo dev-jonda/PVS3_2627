@@ -6,6 +6,8 @@ class Product {
     private int amount;
     private double pricePerPiece;
 
+    private final String DEFAULT_CATEGORY = "Other";
+
     public String getName() {
         return name;
     }
@@ -57,6 +59,14 @@ class Product {
         this.amount = amount;
     }
 
+    public Product(String name, int amount, int pricePerPiece){
+//        this(name, DEFAULT_CATEGORY, amount, pricePerPiece);
+        this.name = name;
+        this.category = DEFAULT_CATEGORY;
+        this.amount = amount;
+        this.pricePerPiece = pricePerPiece;
+    }
+
     public Product(String name, String category, int amount, int pricePerPiece) {
         this(name, category, amount);
         this.pricePerPiece = pricePerPiece;
@@ -76,6 +86,14 @@ class Product {
 public class Products {
     public static void main(String[] args) {
     // načíst celý soubor a vypsat počet kusů na skladu
+        Product product = new Product("Chair", 400, 465);
+
+        System.out.println(product.getName() + ": "+ product.getAmount());
+        System.out.println(product.toString());
+        product.getCategory().toUpperCase();
+//        product.getName();
+//        product.name;
+
 
     }
 }
