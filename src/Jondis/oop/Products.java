@@ -10,7 +10,7 @@ class Product{
     private String name;
     private String category;
     private int amount;
-    private int pricePerPiece;
+    private double pricePerPiece;
 
     private final /*final znamená, že se hodnota atributu nemůže změnit*/ String DEFAULT_CATEGORY = "Other";
 
@@ -42,11 +42,11 @@ class Product{
         }
     }
 
-    public int getPricePerPiece() {
-        return pricePerPiece;
-    }
+//    public int getPricePerPiece() {
+//        return pricePerPiece;
+//    }
 
-    public void setPricePerPiece(int pricePerPiece) {
+    public void setPricePerPiece(double pricePerPiece) {
         if (pricePerPiece >= 0) {
             this.pricePerPiece = pricePerPiece;
         } else {
@@ -64,7 +64,7 @@ class Product{
         this.amount = amount;
     }
 
-    public Product(String name, String category, int amount, int pricePerPiece) {
+    public Product(String name, String category, int amount, double pricePerPiece) {
         this(name, category, amount);
         this.pricePerPiece = pricePerPiece;
     }
@@ -83,22 +83,42 @@ class Product{
 public class Products {
     public static void main(String[] args) {
         DataImport di = new DataImport("data/products.txt");
-        // načíst celý soubor a vypsat počet kusů na skladu
-        Product product = new Product("Chair", "Furniture", 400);
-
-
-        ArrayList<Product> products = new ArrayList<>();
+//        // načíst celý soubor a vypsat počet kusů na skladu
+//        Product product = new Product("Chair", "Furniture", 400);
+        String line;
+        ArrayList<Product> products = new ArrayList<>(); // --> Konstruktor
+        String[] params;
+        Product product;
         while (di.hasNext()) {
-            String line = di.readLine();
-            String[] data = line.split(";");
+            line = di.readLine();
+            params = line.split(";");
 
-//            Product product = new Product(
-//                    data[0],
-//                    data[1],
-//                    Integer.parseInt(data[2]),
-//                    Integer.parseInt(data[3]));
+            if (params.length == 4) System.out.println("volám konstruktor se čtyřmi");
+            if (params.length == 3) System.out.println("volám konstruktor se třemi");
+            if (params.length == 2) System.out.println("volám konstruktor se dvěmi");
+
+            switch (params.length) {
+                case 4: product = new Product(params[0],
+                        params[1],
+                        Integer.parseInt(params[2]),
+                        Double.parseDouble(params[3]));
+                break;
+
+                case 3: product = new Product(params[0],
+                        params[1],
+                        Integer.parseInt(params[2]));
+                break;
+
+                case 2: product = new Product(params[0],
+                        params[1]);
+                break;
+
+                default:
+                    System.out.println("Tento řádek nemá validní délku: " + line);
+                    product = null;
+                    break;
+            }
         }
-
 
         di.finishImport();
     }
