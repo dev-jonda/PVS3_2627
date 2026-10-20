@@ -89,13 +89,34 @@ class Main {
 
             // Přidat do listu animals zvíře
             switch (parts[0]){
-                case "Dog": {
-                    animals.add(new Animal(parts[1], Double.parseDouble(parts[2]), parts[3]));
+                case "Cat":
+                {
+                    animals.add(new jondis.oop.inheritance.Cat(parts[2], Double.parseDouble(parts[1])));
                     break;
+                }
+                case "Dog": {
+                    animals.add(new jondis.oop.inheritance.Dog(
+                            parts[2],
+                            Double.parseDouble(parts[1]),
+                            parts[3]
+                    ));
+                    break;
+                }
+                case "Pig": {
+                    animals.add(new jondis.oop.inheritance.Pig(
+                            parts[2],
+                            Double.parseDouble(parts[1]),
+                            Integer.parseInt(parts[4])
+                    ));
                 }
             }
         }
-
+        for(jondis.oop.inheritance.Animal animal: animals){
+            if(animal instanceof jondis.oop.inheritance.Dog){
+                System.out.println(((jondis.oop.inheritance.Dog) animal).breed);
+            }
+        }
+        System.out.println(animals);
 
         di.finishImport();
     }
