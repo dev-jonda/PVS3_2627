@@ -9,7 +9,7 @@ public class Animal {
     protected String name;
     private double energy;
 
-    public Animal(String name, double energy) {
+    public Animal(String name, double energy){
         this.name = name;
         this.energy = energy;
     }
@@ -17,7 +17,6 @@ public class Animal {
     public void eat() {
         energy += Math.exp(-energy);
     }
-
     public void makeNoise() {
         System.out.println("Make some noise");
     }
@@ -48,31 +47,26 @@ class Cat extends Animal {
 
     @Override
     public void makeNoise() {
-        System.out.println("Moew");
+        System.out.println("Meow");
     }
-
 }
 
-class Pig extends Animal {
+class Pig extends Animal{
     int mudLevel;
-
-    public Pig(String name, double energy) {
-        super(name, energy);
-    }
 
     public Pig(String name, double energy, int mudLevel) {
         super(name, energy);
         this.mudLevel = mudLevel;
     }
 
-    void playInMud() {
+    void playInMud(){
         mudLevel += 10;
         mudLevel = Math.min(mudLevel, 100);
     }
 
     @Override
     public void makeNoise() {
-        System.out.println("Chro chro chro :)");
+        System.out.println("Oink");
     }
 }
 
@@ -80,10 +74,11 @@ class Main {
     public static void main(String[] args) {
         DataImport di = new DataImport("data/animals.txt");
 
-        di.readLine(); // přeskočení hlavičky
+        // přeskočit hlavičku
+        di.readLine();
 
         List<Animal> animals = new ArrayList<>();
-        while (di.hasNext()) {
+        while(di.hasNext()){
             String line = di.readLine();
             String[] parts = line.trim().split(";");
 
@@ -91,11 +86,11 @@ class Main {
             switch (parts[0]){
                 case "Cat":
                 {
-                    animals.add(new jondis.oop.inheritance.Cat(parts[2], Double.parseDouble(parts[1])));
+                    animals.add(new Cat(parts[2], Double.parseDouble(parts[1])));
                     break;
                 }
                 case "Dog": {
-                    animals.add(new jondis.oop.inheritance.Dog(
+                    animals.add(new Dog(
                             parts[2],
                             Double.parseDouble(parts[1]),
                             parts[3]
@@ -103,7 +98,7 @@ class Main {
                     break;
                 }
                 case "Pig": {
-                    animals.add(new jondis.oop.inheritance.Pig(
+                    animals.add(new Pig(
                             parts[2],
                             Double.parseDouble(parts[1]),
                             Integer.parseInt(parts[4])
@@ -111,13 +106,11 @@ class Main {
                 }
             }
         }
-        for(jondis.oop.inheritance.Animal animal: animals){
-            if(animal instanceof jondis.oop.inheritance.Dog){
-                System.out.println(((jondis.oop.inheritance.Dog) animal).breed);
+        for(Animal animal: animals){
+            if(animal instanceof Dog){
+                System.out.println(((Dog) animal).breed);
             }
         }
         System.out.println(animals);
-
-        di.finishImport();
     }
 }

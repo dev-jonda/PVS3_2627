@@ -9,7 +9,7 @@ public class Surgeon extends Doctor {
     }
 
     void surgery(){
-        System.out.println("5e6ba");
-        salary += 25000;
+        System.out.println("Cutting you open...");
+        salary += 20000;
     }
 }
