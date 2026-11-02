@@ -31,10 +31,10 @@ public class Points {
                     points.add(new Point(Double.parseDouble(params[0]), Double.parseDouble(params[1])));
                     break;
                 case 3:
-                    points.add(new Point(Double.parseDouble(params[0]), Double.parseDouble(params[1]), Double.parseDouble(params[2])));
+                    //points.add(new Point(Double.parseDouble(params[0]), Double.parseDouble(params[1]), Double.parseDouble(params[2])));
                     break;
                 case 4:
-                    points.add(new Point(Double.parseDouble(params[0]), Double.parseDouble(params[1]), Double.parseDouble(params[2]), Double.parseDouble(params[3])));
+                    //points.add(new Point(Double.parseDouble(params[0]), Double.parseDouble(params[1]), Double.parseDouble(params[2]), Double.parseDouble(params[3])));
                     break;
             }
 
