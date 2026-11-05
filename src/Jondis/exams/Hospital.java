@@ -90,7 +90,7 @@ public class Hospital {
                     currentDoctor = new CardiacSurgeon(tokens[0]);
                     break;
             }
-            doctors.add(currentDoctor);
+            // doctors.add(currentDoctor);
 
         }
 
