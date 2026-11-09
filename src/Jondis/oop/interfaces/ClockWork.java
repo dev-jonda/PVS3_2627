@@ -31,7 +31,7 @@ class DigitalClock implements TimeSupport {
         System.out.println("Today: " + day + ". " + month + ". (" + year+ ") " + hour + ":" + minute );
     }
 }
-class StopWatch implements TimeSupport {
+class StopWatch implements TimeSupport, Comparable {
     long milliseconds;
 
     //kdy zacnu merit
@@ -65,5 +65,10 @@ class StopWatch implements TimeSupport {
         int minutes = (int) (totalSeconds / 60);
         double seconds = totalSeconds % 60.0;
         System.out.println(minutes + ":" + seconds);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

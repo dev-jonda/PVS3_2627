@@ -3,6 +3,7 @@ package jondis.oop.interfaces;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class ComparingBasics {
     static void printList(ArrayList<Item> items){
@@ -39,6 +40,13 @@ class Item implements Comparable<Item> {
     String name;
     int quantity;
     double price;
+
+    public static Comparator<Item> BY_PRICE = new Comparator<Item>() { // anonymni vnitrni trida
+        @Override
+        public int compare(Item o1, Item o2) {
+            return Double.compare(o1.price, o2.price);
+        }
+    };
 
     public Item(String name, int quantity, double price) {
         this.name = name;
