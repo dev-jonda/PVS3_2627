@@ -31,8 +31,18 @@ public class ComparingBasics {
         printList(items);
 
         // anonymni vnitrni trida
-
-        // ...
+//        Comparator<Item> BY_PRICE = new Comparator<Item>() {
+//            @Override
+//            public int compare(Item o1, Item o2) {
+//                return 0;
+//            }
+//        };
+        System.out.println("---");
+        items.sort(Item.BY_PRICE);
+        printList(items);
+        System.out.println("--- .reversed ---");
+        items.sort(Item.BY_PRICE.reversed()); // .reversed -> řazení naopak
+        printList(items);
     }
 }
 
@@ -41,10 +51,24 @@ class Item implements Comparable<Item> {
     int quantity;
     double price;
 
-    public static Comparator<Item> BY_PRICE = new Comparator<Item>() { // anonymni vnitrni trida
+    public static final Comparator<Item> BY_PRICE = new Comparator<Item>() {
         @Override
         public int compare(Item o1, Item o2) {
             return Double.compare(o1.price, o2.price);
+        }
+    };
+
+    public static final Comparator<Item> BY_QTY = new Comparator<Item>() {
+        @Override
+        public int compare(Item o1, Item o2) {
+            return Double.compare(o1.quantity, o2.quantity);
+        }
+    };
+
+    public static final Comparator<Item> BY_TOTAL_VALUE = new Comparator<Item>() {
+        @Override
+        public int compare(Item o1, Item o2) {
+            return 0;
         }
     };
 
@@ -72,10 +96,9 @@ class Item implements Comparable<Item> {
 //        return Double.compare(this.price, o.price);
 //    }
 
-    // name
-
+    // Porovnání podle jména abecedně
     @Override
     public int compareTo(Item o) {
-        return this.name.compareTo(o.name);
+        return this.name.toLowerCase().compareTo(o.name.toLowerCase()); // .toLowerCase -> porovnáná nejdříve malá písmena a pak velká podle ASCI table
     }
 }

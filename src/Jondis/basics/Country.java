@@ -1,7 +1,7 @@
 package jondis.basics;
 
 public class Country {
-    String name;
+    public String name;
     public String continent;
     long population;
     double avgAge;
