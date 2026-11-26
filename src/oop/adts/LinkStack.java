@@ -6,7 +6,7 @@ public class LinkStack implements MyStack{
     @Override
     public void push(String item) {
         // 1. vzít MyLink
-        MyLink curr = data;
+        MyLink curr = data; // celej retez dat
 
         // 2. zkontrolovat, jestli je v něm místo
         while(curr.getCurrent() != null){
